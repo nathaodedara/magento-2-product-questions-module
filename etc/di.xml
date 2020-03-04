@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="invigorate_productquestions_listing_data_source" xsi:type="string">Invigorate\ProductQuestions\Model\ResourceModel\FaqQuestionList\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Invigorate\ProductQuestions\Model\ResourceModel\FaqQuestionList\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">product_faq_question_list</argument>
+            <argument name="resourceModel" xsi:type="string">Invigorate\ProductQuestions\Model\ResourceModel\FaqQuestionList</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,81 @@
+<?php
+    $faqquestions = $block->getProductQuestions()->getData();
+    /*echo "<pre>";
+    print_r($faqquestions);
+    echo "</pre>";
+    exit;*/
+    $helper = $this->helper(Invigorate\ProductQuestions\Helper\Data::class);
+    $displayconfig = $helper->getModuleStatus();
+    $loginStatus = $helper->isLoggedIn();
+?>
+<div class="displayquestions">
+    <h2 style="font-weight:normal;">Customer Questions</h2>
+    <?php
+    if (empty($faqquestions)) {
+        echo "No questions to display.";
+    } else {
+        foreach ($faqquestions as $data) { ?>
+                <span style="color:black;font-size: 16px;font-weight: bold;">Question: <?php echo $data['question_desc']; ?></span><br>
+                <span><b style="color:black;">Asnwer:</b> <?php echo $data['question_answer']; ?></span><br>
+                <span>Asked by <span style="color:black;font-weight: bold;"><?php echo ucfirst($data['questioner']); ?></span> on <span style="font-weight: lighter;color:black;"><?php echo date("d M,Y H:i:s", strtotime($data['created_at'])); ?></span></span><br><br>
+            <?php }//foreach loop
+    }//else loop
+    ?>
+</div>
+<hr>
+<?php
+if ($displayconfig && $displayconfig == 1) {
+    if ($loginStatus && $loginStatus == 1) {
+        echo __("Did you find what you were looking for?  ");
+        if ($currentProduct = $block->getCurrentProduct()) {
+            $productId = $currentProduct->getId();
+        }
+        ?>
+        <a href="#tab-label-productquestions-title" onclick="document.getElementById('askquestionformdiv').style.cssText='display:block;'">Ask a Question</a>
+        <div id="askquestionformdiv" class="askquestionform">
+            <a class="closefaqform" href="#tab-label-productquestions-title" onclick="document.getElementById('askquestionformdiv').style.cssText='display:none;'">Close</a><br><br>
+            <form id="askquestionform" method="post" action="<?php echo $this->getUrl('productquestions/Addfaq/Index'); ?>">
+                <input type="hidden" name="product_id" value="<?php echo $productId; ?>" />
+                <div style="padding-bottom: 5px;">&nbsp;<b>Your question</b>(<span style="color:red;">*</span>):</div>
+                <textarea data-validate="{required:true, minlength:10, maxlength:120}" class="textarea-questionbox" name="txtarea_question" placeholder="Type your question here..."></textarea>
+                <div style="padding-top: 5px;">&nbsp;<b>Your name</b>(<span style="color:red;">*</span>):</div>
+                <input data-validate="{required:true, 'letters-only':true, minlength:3, maxlength:15}" type="text" name="txt_questioner" placeholder="Enter your name" />
+                <div style="padding-top: 10px;"><input type="submit" class="submitaskQuestionButton" value="Submit"/></div>
+                <script type="text/x-magento-init">
+                    {
+                        "#askquestionform": {
+                            "validation": {}
+                        }
+                    }
+                </script>
+            </form>
+        </div>
+        <?php
+    } else {
+        echo "<span style='color:red;font-weight:bold;'>You must be loggedin in order to ask questions.</span>";
+    }
+} else {
+    echo __("Did you find what you were looking for?  ");
+    if ($currentProduct = $block->getCurrentProduct()) {
+        $productId = $currentProduct->getId();
+    } ?>
+        <a href="#tab-label-productquestions-title" onclick="document.getElementById('askquestionformdiv').style.cssText='display:block;'">Ask a Question</a>
+        <div id="askquestionformdiv" class="askquestionform">
+            <a class="closefaqform" href="#tab-label-productquestions-title" onclick="document.getElementById('askquestionformdiv').style.cssText='display:none;'">Close</a><br><br>
+            <form id="askquestionform" method="post" action="<?php echo $this->getUrl('productquestions/Addfaq/Index'); ?>">
+                <input type="hidden" name="product_id" value="<?php echo $productId; ?>" />
+                <div style="padding-bottom: 5px;">&nbsp;<b>Your question</b>(<span style="color:red;">*</span>):</div>
+                <textarea data-validate="{required:true, minlength:10, maxlength:120}" class="textarea-questionbox" name="txtarea_question" placeholder="Type your question here..."></textarea>
+                <div style="padding-top: 5px;">&nbsp;<b>Your name</b>(<span style="color:red;">*</span>):</div>
+                <input data-validate="{required:true, 'letters-only':true, minlength:3, maxlength:15}" type="text" name="txt_questioner" placeholder="Enter your name" />
+                <div style="padding-top: 10px;"><input type="submit" class="submitaskQuestionButton" value="Submit"/></div>
+                <script type="text/x-magento-init">
+                    {
+                        "#askquestionform": {
+                            "validation": {}
+                        }
+                    }
+                </script>
+            </form>
+        </div> <?php
+}

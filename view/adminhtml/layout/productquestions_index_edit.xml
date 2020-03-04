@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../
+../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Invigorate_ProductQuestions::css/invigorate_admin_faq.css"/>
+    </head>
+    <body>
+        <referenceContainer name="left">
+            <block class="Invigorate\ProductQuestions\Block\Adminhtml\Faq\Edit\Tabs"
+                name="invigorate_productquestions_faq.edit.tabs"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Invigorate\ProductQuestions\Block\Adminhtml\Faq\Edit"
+                name="invigorate_productquestions_faq.edit"/>
+        </referenceContainer>
+    </body>
+</page>

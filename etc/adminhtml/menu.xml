@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Invigorate_ProductQuestions::add_row" title="Manage FAQ" module="Invigorate_ProductQuestions" sortOrder="20" parent="Magento_Catalog::catalog" action="productquestions" resource="Invigorate_ProductQuestions::add_row"/>
+    </menu>
+</config>

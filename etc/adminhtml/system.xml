@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="discount" translate="label" sortOrder="100">
+            <label>Invigorate Systems</label>
+        </tab>
+        <section id="productquestions" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Product Questions Module</label>
+            <tab>discount</tab>
+            <resource>Invigorate_ProductQuestions::productquestions_config</resource>
+            <group id="active_module" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Product Frequently Asked Questions Module Options</label>
+                <field id="module_status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Only Authenticated users can ask questions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select 'Yes', if you want only login users to ask questions. else keep No.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

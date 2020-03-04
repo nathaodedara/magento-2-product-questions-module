@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Invigorate_ProductQuestions::css/productquestions_custom.css" />
+	</head>
+	<body>
+		<referenceBlock name="product.info.details">
+			<block class="Invigorate\ProductQuestions\Block\FaqRecords" name="productquestions" template="Invigorate_ProductQuestions::productquestions.phtml" group="detailed_info" >
+				<arguments>
+					<argument translate="true" name="title" xsi:type="string">Product Questions</argument>
+					<argument name="sort_order" xsi:type="string">300</argument>
+				</arguments>
+			</block>
+		</referenceBlock>
+	</body>
+</page>
